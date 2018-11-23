@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Editer votre profil</h1>
-  <%= simple_form_for @profile, url: account_profile_path, method: :patch do |f| %>
+  <%= simple_form_for @user, url: account_profile_path, method: :patch do |f| %>
     <%= f.input :first_name %>
     <%= f.input :last_name %>
     <%= f.input :phone_number %>

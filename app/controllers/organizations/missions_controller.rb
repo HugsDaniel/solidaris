@@ -55,19 +55,19 @@ class Organizations::MissionsController < ApplicationController
   end
 
   def organization_missions
-    current_organization.missions
+    @organization.missions
   end
 
   def coming_organization_missions
-    organization_missions.select { |mission| mission if mission.is_coming }
+    organization_missions.coming
   end
 
   def current_organization_missions
-    organization_missions.select { |mission| mission if mission.is_current }
+    organization_missions.current
   end
 
   def day_organization_missions
-    organization_missions.select { |mission| mission if mission.is_today }
+    organization_missions.today
   end
 
   def mission_params

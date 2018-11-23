@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-
   has_many :applications
   has_many :missions, through: :applications
   # mount_uploader :picture, PhotoUploader

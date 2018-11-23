@@ -15,18 +15,18 @@ class Account::MissionsController < ApplicationController
   end
 
   def coming_user_missions
-    user_missions.select { |mission| mission if mission.is_coming }
+    user_missions.coming
   end
 
   def current_user_missions
-    user_missions.select { |mission| mission if mission.is_current }
+    user_missions.current
   end
 
   def day_user_missions
-    user_missions.select { |mission| mission if mission.is_today }
+    user_missions.today
   end
 
   def user_missions
-    current_user.missions
+    @user.missions
   end
 end

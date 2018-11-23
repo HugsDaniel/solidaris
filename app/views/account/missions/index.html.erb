@@ -9,45 +9,44 @@
   <div class="navbar-button">
   </div>
 </div>
-<div class="wrapper-bottom">
-  <div class="container-grey-right-bottom">
-    <h4>Missions du jour </h4>
-    <div class="flex-container">
-      <% @day_missions.reverse_each do |mission| %>
-        <%= link_to organizations_mission_path(mission) do %>
-          <div class="mini-card-container">
-            <div class="mini-card-description">
-              <%= mini_svg_div(mission.category) %>
-              <h2><%= mission.title %></h2>
-              <p><%= mission.organization.name %></p>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
   <div class="wrapper-right">
-      <div class="container-grey-right">
-        <h4>Mes missions en cours </h4>
-        <div class="flex-container">
-          <% @current_missions.reverse_each do |mission| %>
-              <div class="missions-cards-dashboard">
-                <%= link_to mission_path(mission) do %>
-                  <%= index_svg_div(mission.category) %>
+    <div class="container-grey-right">
+      <h4>Missions du jour </h4>
+      <div class="flex-container">
+        <% @day_missions.reverse_each do |mission| %>
+          <%= link_to mission_path(mission) do %>
+            <div class="mini-card-container">
+              <div class="mini-card-description">
+                <%= mini_svg_div(mission.category) %>
+                <h2><%= mission.title %></h2>
+                <p><%= mission.organization.name %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="container-grey-right">
+      <h4>Mes missions en cours </h4>
+      <div class="flex-container">
+        <% @current_missions.reverse_each do |mission| %>
+            <div class="missions-cards-dashboard">
+              <%= link_to mission_path(mission) do %>
+                <%= index_svg_div(mission.category) %>
+                <h2><%= mission.title %></h2>
+                <p><%= mission.organization.name%></p>
+                <div class="border-bottom gradient-<%=mission.category.downcase%>"></div>
+                <div class="gradient-<%=mission.category.downcase%> overlay-dashboard"> <!-- overlay dashboard-svg -->
+                  <%= white_svg_div(mission.category) %>
                   <h2><%= mission.title %></h2>
                   <p><%= mission.organization.name%></p>
-                  <div class="border-bottom gradient-<%=mission.category.downcase%>"></div>
-                  <div class="gradient-<%=mission.category.downcase%> overlay-dashboard"> <!-- overlay dashboard-svg -->
-                    <%= white_svg_div(mission.category) %>
-                    <h2><%= mission.title %></h2>
-                    <p><%= mission.organization.name%></p>
-                    <p><strong><%= l(mission.starting_at, format: :short) %></strong></p>
-                  </div>
-              <% end %>
-            </div>
-        <% end %>
-        </div>
+                  <p><strong><%= l(mission.starting_at, format: :short) %></strong></p>
+                </div>
+            <% end %>
+          </div>
+      <% end %>
       </div>
+    </div>
     <div class="container-grey-right-bottom">
       <h4>Prochaines missions </h4>
       <div class="flex-container">

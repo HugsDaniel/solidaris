@@ -9,14 +9,14 @@ class Account::ProfilesController < ApplicationController
   end
 
   def update
-    @profile.update(user_params)
+    @user.update(user_params)
     redirect_to account_profile_path(@profile), :notice => "Votre profil a été modifié!"
   end
 
   private
 
   def set_user
-    @profile = User.find(current_user.id)
+    @user = User.find(current_user.id)
   end
 
   def user_params
