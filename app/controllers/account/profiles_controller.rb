@@ -1,9 +1,5 @@
 class Account::ProfilesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user
-
-  def show
-  end
 
   def edit
   end
@@ -15,10 +11,6 @@ class Account::ProfilesController < ApplicationController
 
   private
 
-  def set_user
-    @user = User.find(current_user.id)
-  end
-
   def user_params
     params.require(:user).permit(
       :first_name,
@@ -26,8 +18,7 @@ class Account::ProfilesController < ApplicationController
       :phone_number,
       :description,
       :skills,
-      :experiences,
-      :picture
+      :experiences
     )
   end
 end

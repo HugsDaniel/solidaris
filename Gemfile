@@ -36,4 +36,11 @@ group :development, :test do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'dotenv-rails'
   gem 'rspec-rails', '~> 3.8'
+  gem 'rails-controller-testing'
+  gem "factory_bot_rails", "~> 4.0"
+  gem 'capybara'
+  gem "faker"
+  gem "database_cleaner"
+  gem "launchy"
+  gem "selenium-webdriver"
 end

@@ -1,0 +1,78 @@
+<div class="dashboard-container">
+  <div class="dashboard-name-container">
+    <div class="asso-namelogo">
+      <div class="asso-infos">
+        <% if @organization.name.present? && @organization.website.present? %>
+          <h1><%= @organization.name %></h1>
+          <%= link_to @organization.website, class: "url-asso" %>
+        <% else %>
+          <%= link_to "Modifier votre profil", edit_organizations_mission_path(@organization), class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="navbar-button">
+    </div>
+  </div>
+  <div id="filter-container">
+    <div class="filters">
+      <div><%= form_tag admin_organization_missions_path(@organization), method: :get do %>
+            <%= text_field_tag :address, params[:address], class: "form-control-index", placeholder: "Votre ville" %>
+        </div>
+        <div class="filter-control-index">
+          <select class="select2" onchange="this.form.submit();" name="recurrency">
+            <option value="both">Type</option>
+            <option value="urgent" <%= "selected=\"selected\"" if params[:recurrency] == "urgent" %> >Missions urgentes</option>
+            <option value="ponctuel" <%= "selected=\"selected\"" if params[:recurrency] == "ponctuel"  %> >Missions ponctuelles</option>
+            <option value="recurrent" <%= "selected=\"selected\"" if params[:recurrency] == "recurrent" %> >Missions récurrentes</option>
+          </select>
+        </div>
+        <div class="filter-control-index">
+          <select class="select2" onchange="this.form.submit();" name="start">
+            <option value="both">Démarrage</option>
+            <option value="today" <%= "selected=\"selected\"" if params[:start] == "today" %> >Missions du jour</option>
+            <option value="current" <%= "selected=\"selected\"" if params[:start] == "current"  %> >Missions en cours</option>
+            <option value="coming" <%= "selected=\"selected\"" if params[:start] == "coming" %> >Missions à venir</option>
+          </select>
+        </div>
+        <div class="filter-control-index">
+          <select class="select2" onchange="this.form.submit();" name="category">
+            <option value="categories"> Catégorie</option>
+            <option value="hebergement" <%= "selected=\"selected\"" if params[:category] == "hebergement"  %> >Hébergement</option>
+            <option value="activite" <%= "selected=\"selected\"" if params[:category] == "activite" %> >Activité</option>
+            <option value="collecte" <%= "selected=\"selected\"" if params[:category] == "collecte" %> >Collecte</option>
+            <option value="accompagnement" <%= "selected=\"selected\"" if params[:category] == "accompagnement"  %> >Accompagnement</option>
+            <option value="evenement" <%= "selected=\"selected\"" if params[:category] == "evenement" %> >Evènement</option>
+            <option value="sante" <%= "selected=\"selected\"" if params[:category] == "sante" %> >Santé</option>
+            <option value="enseignement" <%= "selected=\"selected\"" if params[:category] == "enseignement"  %> >Enseignement</option>
+            <option value="autre" <%= "selected=\"selected\"" if params[:category] == "autre" %> >Autre</option>
+          </select>
+        </div>
+        <div class="filter-control-index">
+            <input name="time_range" id="mission_starting_at" value="<%= params[:starting_at] %>" class="userdatepicker form-control filter-control-index" placeholder="Date" autocomplete="off" type="text">
+        </div>
+        <input type="submit" class="hidden">
+      <% end %>
+    </div>
+  </div>
+  <%= link_to 'Ajouter une mission', new_admin_organization_mission_path(@organization), class: 'btn btn-primary' %>
+  <div class="wrapper-bottom">
+    <div class="wrapper-right">
+      <% @missions.each do |mission| %>
+        <div class="product">
+          <div class='product-upvote'>
+            <%= mini_svg_div(mission.category) %>
+          </div>
+          <div class='product-body'>
+            <h3><%= mission.title %></h3>
+            <p><%= mission.organization.name %></p>
+          </div>
+          <ul class="list-inline product-controls hidden-sm hidden-xs">
+            <li><%= link_to admin_organization_mission_path(@organization, mission) do %><i class="far fa-eye"></i><% end %></li>
+            <li><%= link_to edit_admin_organization_mission_path(@organization, mission) do %><i class="fas fa-pencil-alt"></i><% end %></li>
+            <li><%= link_to admin_organization_mission_path(@organization, mission), method: :delete do %><i class="fas fa-times"></i><% end %></li>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

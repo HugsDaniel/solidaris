@@ -1,6 +1,6 @@
 <div class="banner">
   <div class="banner-show-green-background">
-    <h1 class="text-center"><%= "#{@profile.first_name} #{@profile.last_name}" %></h1>
+    <h1 class="text-center"><%= "#{@user.first_name} #{@user.last_name}" %></h1>
   </div>
 </div>
 
@@ -9,14 +9,14 @@
   <div class="row">
     <div class="show-profile-wrap">
       <div>
-        <%= cl_image_tag @profile.picture, class: "profile-picture" %>
+        <%= cl_image_tag @user.picture, class: "profile-picture" %>
       </div>
       <div>
-        <p class="text-align"><%= @profile.description %></p>
-        <p><strong>Contact: </strong><%= @profile.email %></p>
-        <p><strong>Compétences: </strong><%= @profile.skills %></p>
-        <p><strong>Expériences: </strong><%= @profile.experiences %></p>
-        <%= link_to "Editer votre profil", edit_account_profile_path(@profile), class: "btn btn-success" %>
+        <p class="text-align"><%= @user.description %></p>
+        <p><strong>Contact: </strong><%= @user.email %></p>
+        <p><strong>Compétences: </strong><%= @user.skills %></p>
+        <p><strong>Expériences: </strong><%= @user.experiences %></p>
+        <%= link_to "Editer votre profil", edit_account_profile_path(@user), class: "btn btn-success" %>
       </div>
     </div>
   </div>
@@ -25,7 +25,7 @@
 <div class="container">
   <h4><strong>Mes missions en cours</strong></h4>
   <div class="row">
-    <% @profile.missions.each do |mission| %>
+    <% @user.missions.each do |mission| %>
       <div class="col-xs-12 col-sm-4">
         <div class="missions-cards">
           <%= link_to mission_path(mission) do %>

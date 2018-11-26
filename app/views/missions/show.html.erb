@@ -43,7 +43,7 @@
             <p class= "text-center"><%=@mission.organization.description.first(500)%></p>
           </div>
           <div class= "button-more-2 gradient-<%=@mission.category.downcase %> button-white-<%=@mission.category.downcase %>">
-            <%= link_to "En savoir plus", association_path(@organization) %>
+            <%= link_to "En savoir plus", organization_path(@organization) %>
           </div>
         </div>
       </div>

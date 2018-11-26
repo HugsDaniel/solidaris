@@ -3,7 +3,6 @@
     <%= cl_image_tag(@user.picture, width: "100", :crop=>"scale", class: "logo-asso")%>
     <div class="asso-infos">
       <h1><%= @user.first_name%> <%= @user.last_name %></h1>
-      <%= link_to @user.email, class: "url-asso" %>
     </div>
   </div>
   <div class="navbar-button">

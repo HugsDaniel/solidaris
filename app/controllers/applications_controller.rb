@@ -1,6 +1,5 @@
 class ApplicationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user
   before_action :set_mission
 
   def create
@@ -17,10 +16,6 @@ class ApplicationsController < ApplicationController
   end
 
   private
-
-  def set_user
-    @user = current_user
-  end
 
   def set_mission
     @mission = Mission.find(params[:mission_id])

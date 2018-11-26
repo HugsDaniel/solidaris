@@ -1,0 +1,14 @@
+<h1>Modifier cette mission</h1>
+
+
+<div class="container"></div>
+  <%= simple_form_for [:admin, @organization, @mission] do |f| %>
+    <%= f.input :title %>
+    <%= f.input :category %>
+    <%= f.input :address %>
+    <%= f.input :description %>
+    <%= f.input :skills_needed %>
+    <%= f.input :volunteers_needed %>
+    <%= f.submit "Enregistrer mes modifs", class: "btn btn-primary" %>
+  <% end %>
+</div>

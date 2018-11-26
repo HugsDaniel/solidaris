@@ -1,13 +1,16 @@
 class Mission < ApplicationRecord
-  has_many :applications
   belongs_to :organization
+
+  has_many :applications
   has_many :users, through: :applications
-  validates :category, presence: true
+
+  validates :category, :starting_at, presence: true
 
   scope :category, -> category { where("category ILIKE ?", category) unless category == "categories" }
   scope :address, -> city { where("address ILIKE ?", "%#{city}%") }
   scope :recurrency, -> recurrency { scope_recurrency(recurrency) }
   scope :time_range, -> time_range { scope_time_range(time_range) }
+  scope :start, -> start { scope_start(start) }
   scope :today, -> { where(starting_at: Date.today) }
   scope :coming, -> { where('starting_at > ?', Date.current) }
   scope :current, -> do
@@ -36,7 +39,7 @@ class Mission < ApplicationRecord
     when "ponctuel"
       where(recurrent: false)
     when "urgent"
-      where(recurrent: "false", end_candidature_date: (Date.today - 7)..Date.today)
+      where(recurrent: "false", end_candidature_date: Date.today..(Date.today + 7))
     end
   end
 
@@ -48,5 +51,16 @@ class Mission < ApplicationRecord
     ending_on = Date.strptime(ending_on, '%d.%m.%Y')
 
     where("date(starting_at) BETWEEN ? AND ?", starting_on, ending_on)
+  end
+
+  def self.scope_start(start)
+    case start
+    when "today"
+      today
+    when "coming"
+      coming
+    when "current"
+      current
+    end
   end
 end
