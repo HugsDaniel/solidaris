@@ -5,10 +5,6 @@ describe Admin::MissionsController do
   let(:organization) { create(:organization, manager: manager) }
 
   describe "GET #index" do
-    context "when user is not manager" do
-      it "redirects somewhere"
-    end
-
     let!(:organization_mission) { create(:mission,
       starting_at: Date.strptime("26.11.2018", '%d.%m.%Y'),
       organization: organization)
@@ -68,10 +64,6 @@ describe Admin::MissionsController do
   end
 
   describe "GET #new" do
-    context "when user is not manager" do
-      it "redirects somewhere"
-    end
-
     context "when user is manager" do
       before do
         sign_in manager

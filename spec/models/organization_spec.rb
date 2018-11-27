@@ -6,7 +6,7 @@ describe Organization do
       name: 'Emmaus',
       description: 'SUperbe asso de ouf malade, adorable',
       kind: "association",
-      category: "Collecte",
+      category: "Education",
       email: 'tester@example.com',
       phone_number: "0677889900",
       manager: create(:manager))
@@ -61,7 +61,7 @@ describe Organization do
       name: 'Emmaus',
       description: 'SUperbe asso de ouf malade, adorable',
       kind: "association",
-      category: "Collecte",
+      category: "Education",
       email: 'tester@example.com',
       phone_number: "0677889900",
       manager: create(:manager))
@@ -70,7 +70,7 @@ describe Organization do
       name: 'Emmaus',
       description: 'SUperbe asso de ouf malade, adorable',
       kind: "association",
-      category: "Collecte",
+      category: "Education",
       email: 'tester@example.com',
       phone_number: "0677889900",
       manager: create(:manager))

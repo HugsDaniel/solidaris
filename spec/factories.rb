@@ -18,7 +18,7 @@ FactoryBot.define do
     name { Faker::Name.first_name }
     description { 'Superbe asso de ouf malade, adorable' }
     kind { "association" }
-    category { "Collecte" }
+    category { "Education" }
     email { Faker::Internet.email }
     phone_number { Faker::PhoneNumber.phone_number }
 
