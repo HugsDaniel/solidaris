@@ -13,19 +13,19 @@ describe User do
   it "is invalid without a category" do
     mission = Mission.new(category: nil)
     mission.valid?
-    expect(mission.errors[:category]).to include("doit être rempli(e)")
+    expect(mission.errors[:category]).to include(I18n.t('errors.messages.blank'))
   end
 
   it "is invalid without a start date" do
     mission = Mission.new(starting_at: nil)
     mission.valid?
-    expect(mission.errors[:starting_at]).to include("doit être rempli(e)")
+    expect(mission.errors[:starting_at]).to include(I18n.t('errors.messages.blank'))
   end
 
   it "is invalid without an organization" do
     mission = Mission.new(organization_id: nil)
     mission.valid?
-    expect(mission.errors[:organization]).to include("doit exister")
+    expect(mission.errors[:organization]).to include(I18n.t('errors.messages.required'))
   end
 
   let(:manager) { create(:manager) }

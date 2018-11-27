@@ -14,25 +14,25 @@ describe User do
   it "is invalid without a firstname" do
     contact = User.new(first_name: nil)
     contact.valid?
-    expect(contact.errors[:first_name]).to include("doit être rempli(e)")
+    expect(contact.errors[:first_name]).to include(I18n.t('errors.messages.blank'))
   end
 
   it "is invalid without a lastname" do
     contact = User.new(last_name: nil)
     contact.valid?
-    expect(contact.errors[:last_name]).to include("doit être rempli(e)")
+    expect(contact.errors[:last_name]).to include(I18n.t('errors.messages.blank'))
   end
 
   it "is invalid without an email address" do
     contact = User.new(email: nil)
     contact.valid?
-    expect(contact.errors[:email]).to include("doit être rempli(e)")
+    expect(contact.errors[:email]).to include(I18n.t('errors.messages.blank'))
   end
 
   it "is invalid without an a password" do
     contact = User.new(password: nil)
     contact.valid?
-    expect(contact.errors[:password]).to include("doit être rempli(e)")
+    expect(contact.errors[:password]).to include(I18n.t('errors.messages.blank'))
   end
 
   it "is invalid with a duplicate email address" do
@@ -48,6 +48,6 @@ describe User do
     )
 
     contact.valid?
-    expect(contact.errors[:email]).to include("n'est pas disponible")
+    expect(contact.errors[:email]).to include(I18n.t('errors.messages.taken'))
   end
 end

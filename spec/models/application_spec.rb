@@ -18,12 +18,12 @@ describe Application do
   it "is invalid without a user" do
     application = Application.new(user_id: nil)
     application.valid?
-    expect(application.errors[:user]).to include("doit exister")
+    expect(application.errors[:user]).to include(I18n.t('errors.messages.required'))
   end
 
   it "is invalid without a mission" do
     application = Application.new(mission_id: nil)
     application.valid?
-    expect(application.errors[:mission]).to include("doit exister")
+    expect(application.errors[:mission]).to include(I18n.t('errors.messages.required'))
   end
 end
