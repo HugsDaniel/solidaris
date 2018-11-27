@@ -16,9 +16,9 @@ class Admin::OrganizationsController < ApplicationController
 
     if @organization.save
       flash[:notice] = "Successfully created..."
-      redirect_to @organization
+      redirect_to organization_path(@organization)
     else
-      flash[:alert] = "Something went wrong..."
+      flash[:alert] = 'Something went wrong...'
       render :new
     end
   end
@@ -31,9 +31,9 @@ class Admin::OrganizationsController < ApplicationController
 
     if @organization.save
       flash[:notice] = "Successfully updated..."
-      redirect_to @organization
+      redirect_to organization_path(@organization)
     else
-      flash[:alert] = "Something went wrong..."
+      flash[:alert] = 'Something went wrong...'
       render :edit
     end
   end
@@ -50,6 +50,8 @@ class Admin::OrganizationsController < ApplicationController
   def organization_params
     params.require(:organization).permit(
       :name,
+      :email,
+      :phone_number,
       :description,
       :kind,
       :total_volunteers,

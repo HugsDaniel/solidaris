@@ -21,7 +21,10 @@ FactoryBot.define do
     category { "Collecte" }
     email { Faker::Internet.email }
     phone_number { Faker::PhoneNumber.phone_number }
-    manager { create(:manager) }
+
+    factory :invalid_organization do
+      category { nil }
+    end
   end
 
   factory :mission do
@@ -29,7 +32,11 @@ FactoryBot.define do
     address { "Nantes" }
     starting_at { Date.today }
     recurrent { false }
-    organization { create(:organization) }
+    # organization { create(:organization) }
+
+    factory :invalid_mission do
+      category { nil }
+    end
 
     factory :current_mission do
       recurrent { true }

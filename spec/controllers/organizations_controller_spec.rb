@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 describe OrganizationsController do
-  let(:organization) { create(:organization) }
+  let(:manager) { create(:manager) }
+  let(:organization) { create(:organization, manager: manager) }
 
   describe "GET #index" do
     it "populates an array of all organizations" do

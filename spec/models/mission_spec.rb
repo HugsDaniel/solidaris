@@ -5,7 +5,7 @@ describe User do
     mission = Mission.new(
       category: 'Aaron',
       starting_at: Date.today,
-      organization: create(:organization))
+      organization: create(:organization, manager: create(:manager)))
 
       expect(mission).to be_valid
   end
@@ -28,17 +28,20 @@ describe User do
     expect(mission.errors[:organization]).to include("doit exister")
   end
 
-  let(:mission) { create(:mission) }
+  let(:manager) { create(:manager) }
+  let(:organization) { create(:organization, manager: manager) }
 
-  let(:today_mission) { create(:mission, starting_at: Date.today) }
-  let(:coming_mission) { create(:mission, starting_at: Date.today + 7) }
-  let(:current_mission) { create(:current_mission) }
+  let(:mission) { create(:mission, organization: organization) }
 
-  let(:recurrent_mission) { create(:mission, recurrent: true) }
-  let(:urgent_mission) { create(:mission, end_candidature_date: Date.today + 1) }
+  let(:today_mission) { create(:mission, starting_at: Date.today, organization: organization) }
+  let(:coming_mission) { create(:mission, starting_at: Date.today + 7, organization: organization) }
+  let(:current_mission) { create(:current_mission, organization: organization) }
 
-  let(:mission_within_time_range) { create(:mission, starting_at: Date.strptime("26.11.2018", '%d.%m.%Y')) }
-  let(:mission_outside_time_range) { create(:mission, starting_at: Date.strptime("30.11.2018", '%d.%m.%Y')) }
+  let(:recurrent_mission) { create(:mission, recurrent: true, organization: organization) }
+  let(:urgent_mission) { create(:mission, end_candidature_date: Date.today + 1, organization: organization) }
+
+  let(:mission_within_time_range) { create(:mission, starting_at: Date.strptime("26.11.2018", '%d.%m.%Y'), organization: organization) }
+  let(:mission_outside_time_range) { create(:mission, starting_at: Date.strptime("30.11.2018", '%d.%m.%Y'), organization: organization) }
 
   describe ".start" do
     context "when 'current'" do

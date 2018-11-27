@@ -10,10 +10,12 @@ describe Account::MissionsController do
     end
 
     let(:user) { create(:user) }
-    let(:coming_mission) { create(:mission, starting_at: Date.today + 7) }
-    let(:current_mission) { create(:current_mission) }
-    let(:day_mission) { create(:mission, starting_at: Date.today) }
-    
+    let(:manager) { create(:manager) }
+    let(:organization) { create(:organization, manager: manager) }
+    let(:coming_mission) { create(:mission, starting_at: (Date.today + 7), organization: organization) }
+    let(:current_mission) { create(:current_mission, organization: organization) }
+    let(:day_mission) { create(:mission, starting_at: Date.today, organization: organization) }
+
     context "when user is logged in" do
       before do
         sign_in user
@@ -21,6 +23,11 @@ describe Account::MissionsController do
         user.missions << current_mission
         user.missions << day_mission
         user.save
+      end
+
+      it "renders index template" do
+        get :index
+        expect(response).to render_template :index
       end
 
       it "assigns coming missions to @coming_missions" do

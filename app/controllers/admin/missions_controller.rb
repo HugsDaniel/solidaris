@@ -48,7 +48,7 @@ class Admin::MissionsController < ApplicationController
 
   def destroy
     @mission.destroy
-    redirect_to admin_organization_missions_path(@mission), :notice => "Votre mission a été supprimée"
+    redirect_to admin_organization_missions_path(@organization), :notice => "Votre mission a été supprimée"
   end
 
   private

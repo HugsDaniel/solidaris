@@ -1,8 +1,19 @@
 require 'rails_helper'
 
 describe MissionsController do
-  let!(:mission) { create(:mission, starting_at: Date.strptime("26.11.2018", '%d.%m.%Y')) }
-  let!(:mission_outside_of_params) { create(:current_mission, category: "Hebergement", address: "Paris", starting_at: Date.strptime("30.11.2018", '%d.%m.%Y'))}
+  let(:manager) { create(:manager) }
+  let(:organization) { create(:organization, manager: manager)}
+  
+  let!(:mission) { create(:mission,
+    starting_at: Date.strptime("26.11.2018", '%d.%m.%Y'),
+    organization: organization)
+  }
+  let!(:mission_outside_of_params) { create(:current_mission,
+    category: "Hebergement",
+    address: "Paris",
+    starting_at: Date.strptime("30.11.2018", '%d.%m.%Y'),
+    organization: organization)
+  }
 
   describe "GET #index" do
     it "renders the index template" do

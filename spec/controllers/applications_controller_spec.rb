@@ -3,7 +3,9 @@ require 'rails_helper'
 describe ApplicationsController do
   describe "POST #create" do
     let(:user) { create(:user) }
-    let(:mission) { create(:mission) }
+    let(:manager) { create(:manager) }
+    let(:organization) { create(:organization, manager: manager) }
+    let(:mission) { create(:mission, organization: organization) }
 
     context "when user is not logged in" do
       it "redirects to new session" do

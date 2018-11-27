@@ -2,7 +2,9 @@ require 'rails_helper'
 
 describe Application do
   let(:user) { create(:user) }
-  let(:mission) { create(:mission) }
+  let(:manager) { create(:manager) }
+  let(:organization) { create(:organization, manager: manager) }
+  let(:mission) { create(:mission, organization: organization) }
 
   it "is valid with a user and a mission" do
     application = Application.new(
