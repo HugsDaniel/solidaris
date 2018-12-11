@@ -1,4 +1,4 @@
-class Admin::MissionsController < ApplicationController
+class Admin::MissionsController < AdminController
   before_action :authenticate_user!
   before_action :set_organization
   before_action :set_mission, only: [:show, :edit, :update, :destroy]

@@ -1,18 +1,20 @@
-class Admin::OrganizationsController < ApplicationController
+class Admin::OrganizationsController < AdminController
   before_action :authenticate_user!
   before_action :set_organization, only: [:edit, :update, :show]
 
   def index
-    @organizations = @user.organizations
+    @organizations = policy_scope(Organization)
   end
 
   def new
     @organization = Organization.new
+    authorize @organization
   end
 
   def create
     @organization = Organization.new(organization_params)
     @organization.manager = @user
+    authorize @organization
 
     if @organization.save
       flash[:notice] = "Successfully created..."
@@ -45,6 +47,7 @@ class Admin::OrganizationsController < ApplicationController
 
   def set_organization
     @organization = Organization.find(params[:id])
+    authorize @organization
   end
 
   def organization_params
