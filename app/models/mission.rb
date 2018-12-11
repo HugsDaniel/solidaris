@@ -1,5 +1,6 @@
 class Mission < ApplicationRecord
   belongs_to :organization
+  has_one :manager, through: :organization
 
   has_many :applications
   has_many :users, through: :applications

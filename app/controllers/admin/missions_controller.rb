@@ -10,7 +10,7 @@ class Admin::MissionsController < AdminController
   has_scope :time_range
 
   def index
-    @missions = apply_scopes(@organization.missions).all.order(starting_at: :asc)
+    @missions = policy_scope(apply_scopes(@organization.missions).all.order(starting_at: :asc))
     # @coming_missions = coming_organization_missions
     # @current_missions = current_organization_missions
     # @day_missions = day_organization_missions
@@ -22,11 +22,13 @@ class Admin::MissionsController < AdminController
 
   def new
     @mission = Mission.new
+    authorize @mission
   end
 
   def create
     @mission = Mission.new(mission_params)
     @mission.organization = @organization
+    authorize @mission
 
     if @mission.save
       redirect_to admin_organization_missions_path(@organization), :notice => "Votre nouvelle mission a bien été créée!"
@@ -59,6 +61,7 @@ class Admin::MissionsController < AdminController
 
   def set_mission
     @mission = Mission.find(params[:id])
+    authorize @mission
   end
 
   def organization_missions
