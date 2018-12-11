@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   end
 
   resources :missions, only: [:index, :show] do
-    resources :applications, only: [:create]
+    namespace :user do
+      resources :applications, only: [:create]
+    end
   end
 end

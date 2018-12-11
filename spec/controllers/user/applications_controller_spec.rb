@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ApplicationsController do
+describe User::ApplicationsController do
   describe "POST #create" do
     let(:user) { create(:user) }
     let(:manager) { create(:manager) }

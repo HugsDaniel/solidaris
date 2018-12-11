@@ -60,5 +60,20 @@
         <% end %>
       </div>
     </div>
+    <div class="container-grey-right">
+      <h4>Toutes mes missions</h4>
+      <div class="flex-container">
+        <% @all_missions.reverse_each do |mission| %>
+          <%= link_to mission_path(mission) do %>
+            <div class="mini-card-container">
+              <div class="mini-card-description">
+                <%= mini_svg_div(mission.category) %>
+                <h2><%= mission.title %></h2>
+                <p><%= mission.organization.name %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
   </div>
 </div>

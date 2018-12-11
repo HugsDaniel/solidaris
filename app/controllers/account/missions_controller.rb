@@ -2,9 +2,10 @@ class Account::MissionsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @coming_missions = coming_user_missions
-    @current_missions = current_user_missions
-    @day_missions = day_user_missions
+    @coming_missions = policy_scope(coming_user_missions)
+    @current_missions = policy_scope(current_user_missions)
+    @day_missions = policy_scope(day_user_missions)
+    @all_missions = policy_scope(user_missions)
   end
 
   private

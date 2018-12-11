@@ -1,5 +1,6 @@
 class Account::ProfilesController < ApplicationController
   before_action :authenticate_user!
+  before_action :authorize_user
 
   def edit
   end
@@ -10,6 +11,10 @@ class Account::ProfilesController < ApplicationController
   end
 
   private
+
+  def authorize_user
+    authorize @user
+  end
 
   def user_params
     params.require(:user).permit(
