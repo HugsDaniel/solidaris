@@ -28,7 +28,7 @@
             <% end %>
           <% unless @mission.users.include? current_user %>
             <div class= "button-more-2 gradient-<%=@mission.category.downcase %> button-white-<%=@mission.category.downcase %>">
-              <%= link_to "Participer à cette mission", mission_applications_path(@mission), method: :post %>
+              <%= link_to "Participer à cette mission", mission_user_applications_path(@mission), method: :post %>
             </div>
           <% else %>
             <div class= "button-more-2">Vous participez déjà à cette mission !</div>

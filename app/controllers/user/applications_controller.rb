@@ -1,4 +1,4 @@
-class ApplicationsController < ApplicationController
+class User::ApplicationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_mission
 
@@ -7,6 +7,7 @@ class ApplicationsController < ApplicationController
 
     @application.user_id = @user.id
     @application.mission_id = @mission.id
+    authorize [:user, @application]
 
     if @application.save
       redirect_to account_missions_path

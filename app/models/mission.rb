@@ -1,7 +1,8 @@
 class Mission < ApplicationRecord
   belongs_to :organization
+  has_one :manager, through: :organization
 
-  has_many :applications
+  has_many :applications, dependent: :destroy
   has_many :users, through: :applications
 
   validates :category, :starting_at, presence: true

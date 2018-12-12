@@ -1,10 +1,11 @@
 class OrganizationsController < ApplicationController
   def index
-    @organizations = Organization.all
+    @organizations = policy_scope(Organization)
   end
 
   def show
     @organization = Organization.find(params[:id])
     @missions = @organization.missions
+    authorize @organization
   end
 end
