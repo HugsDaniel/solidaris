@@ -18,8 +18,19 @@ feature 'Manager' do
     expect(page).to have_content 'Administration'
   end
 
-  scenario 'can add a mission'
-  
+  scenario 'can add a mission' do
+    log_in manager
+
+    visit new_admin_organization_mission_path(organization)
+
+    expect {
+      choose('mission_category_collecte')
+      fill_in 'mission_starting_at', with: '12.12.2018'
+
+      click_button 'Créer'
+    }.to change(Mission, :count).by 1
+  end
+
   scenario 'can see own organizations and their missions' do
     log_in manager
 
