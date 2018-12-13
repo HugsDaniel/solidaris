@@ -23,6 +23,7 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 gem 'pundit'
+gem 'mini_racer', platforms: :ruby
 
 group :development do
   gem 'web-console', '>= 3.3.0'

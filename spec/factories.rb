@@ -43,5 +43,9 @@ FactoryBot.define do
       starting_at { Date.today - 7 }
       recurrency_ending_on { Date.today + 7 }
     end
+
+    factory :mission_with_organization do
+      organization { create(:organization, manager: create(:manager)) }
+    end
   end
 end
