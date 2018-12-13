@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def after_sign_in_path_for(user)
+    missions_path
+  end
+
   def default_url_options
     { host: ENV['HOST'] || 'localhost:3000' }
   end
